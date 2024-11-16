@@ -1,0 +1,24 @@
+ZADATAK 1
+Da bi mi se vidjele i ikonice ispod teksta produžila sam malo meni
+ZADATAK 2
+Prelaz iz grida u flex je bio poprilično jednostavan jedini problem koji imam sa ovim zadatkom jeste centriranje. 
+Ne znam način na koji mogu flexom doći do istog izgleda kao sa gridom bez korištenja Javascripta.
+ZADATAK 3
+Pratila sam samo upute zadatka, njega sam najbrže završila.
+na veličinama preko 800px se vide oba upita u istom redu, na veličinama od 600px do 800px vide se upiti jedan ispod drugog,
+a na manjim veličinama se vidi samo prvi upit i navigacijska dugmad koja još uvijek nisu u funkciji.
+ZADATAK 4
+Zadatak 4  mi je oduzeo najviše vremena jer je se kasnije ispostavilo da ne smijemo imati kontejnerske div-ove.
+Bila sam ga u početku riješila tako što sam po dvije kvadratne stavila u kontejnerski div i tako ih poredala.
+Međutim, to rješenje je palo u vodu.
+Koristila sam u početku flex, ali kako mi je ponestalo ideja prešla sam na grid. Za veličine preko 800px stavila da grid ima 4 kolone,
+glavna vijest ih sve zauzima i isto toliko redova, dok visoke i kvadratne zauzimaju po jednu kolonu i da visoka zauzima dva reda.
+Na sličan način sam riješila i veličine ispod 800px, tj. da grid ima dvije kolone.
+Čime sam se vratila na prijašnji problem, raspored. 
+Po još jednom uvjetu, zadato nam je da se vijesti redaju s lijeva na desno, pa promjena u tom pogledu nije bila moguća. 
+Pokušala sam izdvojiti pojedine elemente, međutim zbog spomenutog uslova nikad ih nisam mogla poredati kako je zadato bez striktno 
+navođenja u kojem redu i koloni se koji element nalazi. Iskreno mi se ne sviđa ovaj način, ali to je jedini način na kojem sam 
+dobila traženi rezultat.
+Još jedan mali dodatak, vidite da brojevi datih vijesti ne prate nikakav patern pa stvarno nisam mogla pronaći način bez navođenja 
+svakog elementa (osim posljednje dvije visoke vijesti). 
+Dodala sam neke vijesti o nekretninama koje sam našla na internetu samo da vidim kako bi izgledalo sa tekstom.
