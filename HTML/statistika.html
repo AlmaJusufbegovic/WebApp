@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistika Nekretnina</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Style/statistika.css">
+</head>
+<body>
+    <body>
+        <div>
+            <label for="kriterij">Kriterij:</label>
+            <input type="text" id="kriterij" placeholder="Unesite kriterij">
+            <label for="nazivSvojstva">Izaberite svojstvo za filtriranje:</label>
+            <input type="text" id="nazivSvojstva">
+            <button onclick="izracunajKvadraturu()">Izračunaj prosječnu kvadraturu</button>
+            <input type="text" id="rezultatKvadratura" readonly>
+        </div>
+        
+        <div>
+            <label for="kriterijOutlier">Kriterij:</label>
+            <input type="text" id="kriterijOutlier" placeholder="Unesite kriterij">
+            <label for="nazivSvojstva">Izaberite svojstvo za filtriranje:</label>
+            <input type="text" id="nazivSvojstva">
+            <label for="nazivSvojstva">Svojstvo (cijena/kvadratura):</label>
+            <input type="text" id="nazivSvojstva" placeholder="Unesite svojstvo">
+            <button onclick="prikaziOutlier()">Prikaži outlier</button>
+            <input type="text" id="outlier" readonly>
+        </div>
+        
+        <div>
+            <label for="imeKorisnika">ID korisnika:</label>
+            <input type="text" id="imeKorisnika" placeholder="Unesite ID korisnika">
+            <button onclick="prikaziStatistiku(document.getElementById('imeKorisnika').value)">Prikaži statistiku</button>
+        </div>
+        
+        <div id="rezultat"></div>
+        <h1>Histogram Cijena Nekretnina</h1>
+        <form id="statistika-form">
+            <h2>Unos perioda i cijena</h2>
+            <div class="form-group">
+                <label for="period_od">Period Od:</label>
+                <input type="number" name="period_od" id="period_od" placeholder="Npr. 2000" required>
+                <label for="period_do">Period Do:</label>
+                <input type="number" name="period_do" id="period_do" placeholder="Npr. 2020" required>
+            </div>
+            <div class="form-group">
+                <label for="cijena_od">Cijena Od:</label>
+                <input type="number" name="cijena_od" id="cijena_od" placeholder="Npr. 50000" required>
+                <label for="cijena_do">Cijena Do:</label>
+                <input type="number" name="cijena_do" id="cijena_do" placeholder="Npr. 200000" required>
+            </div>
+    
+            <button type="button" id="iscrtaj-histogram">Iscrtaj/Ažuriraj Histogram</button>
+        </form>
+    
+        <div id="histogram-container">
+            <canvas id="histogram"></canvas>
+        </div>
+
+    <script src="../Scripts/SpisakNekretnina.js" defer></script>
+    <script src="../Scripts/nekretine.js" defer></script>
+    <script src="../Scripts/StatistikaNekretnina.js" defer></script>
+    <script src="../Scripts/statistika.js" defer></script>
+</body>
+</html>
