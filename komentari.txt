@@ -22,3 +22,6 @@ dobila traženi rezultat.
 Još jedan mali dodatak, vidite da brojevi datih vijesti ne prate nikakav patern pa stvarno nisam mogla pronaći način bez navođenja 
 svakog elementa (osim posljednje dvije visoke vijesti). 
 Dodala sam neke vijesti o nekretninama koje sam našla na internetu samo da vidim kako bi izgledalo sa tekstom.
+
+////$2b$10$OFykzLMWv.wpDk2dXT5C8ObIgy8tlZYbm0ZPN0VTe8I/jXosIX1EG - username1
+////$2b$10$eN2a0Ii0mkjvpSUU.6.S4uASuULIlAspWFc2LkJTmIYPZszB8oyXC - username2

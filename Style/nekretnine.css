@@ -18,6 +18,20 @@ iframe {
     margin: 20px 0;
 }
 
+#search-container {
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+
 .grid-lista-nekretnina {
     display: flex;
     flex-wrap: wrap;
@@ -76,4 +90,14 @@ iframe {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center; /* Centriranje horizontalno i vertikalno */
+}
+
+#dugmePretraga {
+    grid-column: span 2; /* Dugme će zauzeti oba fr */
 }

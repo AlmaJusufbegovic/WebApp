@@ -119,10 +119,15 @@ iframe {
     justify-content: space-between;
     margin-top: 10px;
   }
+
+  .buttons-item {
+    min-width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
 }
 
-@media (min-width: 600px) {
+/*@media (min-width: 600px) {
   #buttons {
       display: none;
   }
-}
+}*/

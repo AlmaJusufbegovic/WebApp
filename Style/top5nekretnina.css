@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+}
+h1 {
+    text-align: center;
+    color: #343a40;
+}
+.nekretnina-lista {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+.nekretnina-item {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.nekretnina-item h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #007bff;
+}
+.nekretnina-item p {
+    margin: 5px 0;
+    color: #495057;
+}
