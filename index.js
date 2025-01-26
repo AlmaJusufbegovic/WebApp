@@ -105,28 +105,36 @@ const logAttempt = (username, status) => {
 
 app.post('/login', async (req, res) => {
   const jsonObj = req.body;
+  const currentTime = Date.now();
 
   try {
-    if (failedAttempts.has(jsonObj.username)){
+    if (failedAttempts.has(jsonObj.username)) {
       const userData = failedAttempts.get(jsonObj.username);
 
-      if(userData.blockedUntil && userData.blockedUntil>=currentTime){
-        failedAttempts.set(jsonObj.username, {attempts: 0, blockedUntil: null});
+      if (userData.blockedUntil && userData.blockedUntil > currentTime) {
+        return res.status(429).json({
+          greska: 'Previse neuspješnih pokušaja. Pokušajte ponovo za 1 minutu.',
+        });
+      }
+
+      if (userData.blockedUntil && userData.blockedUntil <= currentTime) {
+        failedAttempts.set(jsonObj.username, { attempts: 0, blockedUntil: null });
       }
     }
 
     const data = await fs.readFile(path.join(__dirname, 'data', 'korisnici.json'), 'utf-8');
     const korisnici = JSON.parse(data);
+
     let found = false;
 
     for (const korisnik of korisnici) {
-      if (korisnik.username == jsonObj.username) {
+      if (korisnik.username === jsonObj.username) {
         const isPasswordMatched = await bcrypt.compare(jsonObj.password, korisnik.password);
         if (isPasswordMatched) {
           req.session.username = korisnik.username;
           found = true;
 
-          failedAttempts.delete(jsonObj.username)
+          failedAttempts.delete(jsonObj.username);
           break;
         }
       }
@@ -155,7 +163,7 @@ app.post('/login', async (req, res) => {
       }
 
       logAttempt(jsonObj.username, 'neuspješno');
-      return res.json({ poruka: 'Neuspješna prijava' });
+      return res.status(400).json({ poruka: 'Neuspješna prijava' });
     }
 
   } catch (error) {
