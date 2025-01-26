@@ -9,6 +9,7 @@
     <script src="../Scripts/carousel.js"></script>
     <script src="../Scripts/detalj.js"></script>
     <script src="../Scripts/lokacija.js"></script>
+    <script src="../Scripts/form.js"></script>
 </head>
 
 <body>
@@ -43,6 +44,29 @@
         <button id="prev-btn">Prethodni</button>
         <button id="next-btn">Sljedeći</button>
     </div>
+
+    <form id="interesovanjeForm">
+        <label for="tipInteresovanja">Tip interesovanja:</label>
+        <select id="tipInteresovanja" name="tipInteresovanja" onchange="toggleFormFields()">
+          <option value="upit">Upit</option>
+          <option value="zahtjev">Zahtjev</option>
+          <option value="ponuda">Ponuda</option>
+        </select>
+      
+        <div id="ponudaFields" style="display: none;">
+          <label for="idVezanePonude">Vezana ponuda:</label>
+          <select id="idVezanePonude" name="idVezanePonude" disabled>
+          </select>
+        </div>
+      
+        <div id="tekstField">
+          <label for="tekst">Tekst:</label>
+          <input type="text" id="tekst" name="tekst" required>
+        </div>
+      
+        <button type="submit">Pošaljite interesovanje</button>
+      </form>
+      
 
        <!-- <div id="osnovno">
         <img src="/Resources/stan/stan1.jpg" alt="Nekretnina">

@@ -222,6 +222,27 @@ const PoziviAjax = (() => {
         ajax.send()
     }
 
+    async function loadInteresovanja() {
+        try {
+          let url = `/nekretnina/${nekretninaId}/interesovanja`;
+          let response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${userToken}` // Ako koristite JWT
+            }
+          });
+      
+          let interesovanja = await response.json();
+          if (response.ok) {
+            displayInteresovanja(interesovanja);
+          } else {
+            alert("Greška pri učitavanju interesovanja");
+          }
+        } catch (error) {
+          console.error("Greška pri slanju zahteva", error);
+        }
+      }
+
     return {
         getTop5Nekretnina,
         getMojiUpiti,
@@ -232,6 +253,7 @@ const PoziviAjax = (() => {
         getKorisnik: impl_getKorisnik,
         putKorisnik: impl_putKorisnik,
         postUpit: impl_postUpit,
-        getNekretnine: impl_getNekretnine
+        getNekretnine: impl_getNekretnine,
+        loadInteresovanja
     };
 })();

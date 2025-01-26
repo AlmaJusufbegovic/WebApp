@@ -34,7 +34,7 @@
       {
         "korisnik_id": 4,
         "tekst_upita": "Koliko ima soba"
-      }, 
+      },
       {
         "korisnik_id": 3,
         "tekst_upita": "Cijena"
@@ -76,7 +76,7 @@
       {
         "korisnik_id": 4,
         "tekst_upita": "Koliko ima soba"
-      }, 
+      },
       {
         "korisnik_id": 3,
         "tekst_upita": "Cijena"
@@ -88,6 +88,10 @@
       {
         "korisnik_id": 5,
         "tekst_upita": "nesto"
+      },
+      {
+        "korisnik_id": 2,
+        "tekst_upita": "koliko ima soba"
       },
       {
         "korisnik_id": 2,
