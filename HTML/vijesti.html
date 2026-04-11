@@ -9,7 +9,14 @@
 </head>
 
 <body>
-    <iframe src="meni.html"></iframe>
+    <div id="meni"></div>
+    <script>
+    fetch('/meni.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('meni').innerHTML = html;
+    });
+    </script>
 
     <div class="lista-vijesti">
         <div class="GlavneVijesti">

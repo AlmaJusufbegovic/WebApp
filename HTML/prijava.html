@@ -9,7 +9,15 @@
 </head>
 
 <body id="body">
-    <iframe src="meni.html"></iframe>
+   <div id="meni"></div>
+    <script>
+    fetch('/meni.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('meni').innerHTML = html;
+    });
+    </script>
+
     <div id="formaDugme">
     <form>
         <label for="username">Username: </label>
@@ -19,11 +27,16 @@
         <br><br>
     </form>
     <button id="dugme" type="button" aria-label="login">Login</button>
+
+    <p style="margin-top:15px;"> Nemate nalog?
+        <a href="/registracija.html"> Registrirajte se </a>
+    </p>
+    
     </div>
     <div id="areaBelow">
 
     </div>
 </body> 
-<script src="../Scripts/poziviAjax.js"></script>
+<script src="../Scripts/PoziviAjax.js"></script>
 <script src="../Scripts/prijava.js"></script>
 </html>

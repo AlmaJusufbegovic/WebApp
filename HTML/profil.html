@@ -1,33 +1,137 @@
 <!DOCTYPE html>
 <html lang="bs-BA">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="../Style/profil.css">
 </head>
-
 <body>
-    <iframe src="meni.html"></iframe>
-    <div class="user-profil">
-        <div>
-            <img src="../Resources/ostalo/profile-image.jpg" alt="Korisnikova slika" class="user-slika">
+   <div id="meni"></div>
+    <script>
+    fetch('/meni.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('meni').innerHTML = html;
+    });
+    </script>
+
+    <div class="profil-wrapper">
+        <h2>Moj profil</h2>
+
+        <div id="profil-sadrzaj">
+            <div class="profil-row">
+                <label>Ime:</label>
+                <span id="prikaz-ime">—</span>
+            </div>
+            <div class="profil-row">
+                <label>Prezime:</label>
+                <span id="prikaz-prezime">—</span>
+            </div>
+            <div class="profil-row">
+                <label>Username:</label>
+                <span id="prikaz-username">—</span>
+            </div>
+
+            <hr style="margin: 24px 0; border-color: #eee;">
+            <h3 style="margin-bottom:16px; color:#333;">Izmjena podataka</h3>
+
+            <div class="profil-row">
+                <label>Novo ime:</label>
+                <input type="text" id="input-ime" placeholder="Unesite novo ime">
+            </div>
+            <div class="profil-row">
+                <label>Novo prezime:</label>
+                <input type="text" id="input-prezime" placeholder="Unesite novo prezime">
+            </div>
+            <div class="profil-row">
+                <label>Username:</label>
+                <input type="text" id="input-username" placeholder="Unesite novi username">
+            </div>
+            <div class="profil-row">
+                <label>Lozinka:</label>
+                <input type="password" id="input-password" placeholder="Nova lozinka (opcionalno)">
+            </div>
+
+            <div id="poruka"></div>
+            <button class="dugme-sacuvaj" id="dugme-sacuvaj">Sačuvaj izmjene</button>
         </div>
-        <div></div>
-        <div>
-            <p>Ime: </p>
-            <p>Prezime: </p>
-            <p>Username: </p>
-            <p>Password: </p>
-        </div>
-        <div>
-            <input type="text" placeholder="Unesite ime">
-            <input type="text" placeholder="Unesite prezime">
-            <input type="text" placeholder="Unesite username">
-            <input type="password" placeholder="Unesite lozinku">
+
+        <div id="nije-prijavljen-div" class="nije-prijavljen" style="display:none;">
+            <p>Niste prijavljeni. <a href="prijava.html">Prijavite se</a> da biste vidjeli profil.</p>
         </div>
     </div>
-</body>
 
+    <script src="../Scripts/PoziviAjax.js"></script>
+    <script>
+        window.onload = function () {
+            // Učitaj podatke korisnika
+            PoziviAjax.getKorisnik(function (err, data) {
+                if (err) {
+                    document.getElementById('profil-sadrzaj').style.display = 'none';
+                    document.getElementById('nije-prijavljen-div').style.display = 'block';
+                } else {
+                    document.getElementById('prikaz-ime').textContent = data.ime;
+                    document.getElementById('prikaz-prezime').textContent = data.prezime;
+                    document.getElementById('prikaz-username').textContent = data.username;
+                }
+            });
+
+            // Sačuvaj izmjene
+            document.getElementById('dugme-sacuvaj').addEventListener('click', function () {
+                const ime = document.getElementById('input-ime').value.trim();
+                const prezime = document.getElementById('input-prezime').value.trim();
+                const username = document.getElementById('input-username').value.trim();
+                const password = document.getElementById('input-password').value;
+
+                // Šaljemo samo popunjena polja
+                const noviPodaci = {};
+                if (ime) noviPodaci.ime = ime;
+                if (prezime) noviPodaci.prezime = prezime;
+                if (username) noviPodaci.username = username;
+                if (password) noviPodaci.password = password;
+
+                if (Object.keys(noviPodaci).length === 0) {
+                    prikaziPoruku('Unesite barem jedno polje za izmjenu.', false);
+                    return;
+                }
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('PUT', 'http://localhost:3000/korisnik', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            prikaziPoruku('Podaci uspješno ažurirani!', true);
+                            // Osvježi prikaz
+                            PoziviAjax.getKorisnik(function (err, data) {
+                                if (!err) {
+                                    document.getElementById('prikaz-ime').textContent = data.ime;
+                                    document.getElementById('prikaz-prezime').textContent = data.prezime;
+                                    document.getElementById('prikaz-username').textContent = data.username;
+                                }
+                            });
+                            // Očisti polja
+                            document.getElementById('input-ime').value = '';
+                            document.getElementById('input-prezime').value = '';
+                            document.getElementById('input-username').value = '';
+                            document.getElementById('input-password').value = '';
+                        } else {
+                            const odgovor = JSON.parse(xhr.responseText);
+                            prikaziPoruku(odgovor.greska || 'Greška pri ažuriranju.', false);
+                        }
+                    }
+                };
+                xhr.send(JSON.stringify(noviPodaci));
+            });
+        };
+
+        function prikaziPoruku(tekst, uspjeh) {
+            const el = document.getElementById('poruka');
+            el.textContent = tekst;
+            el.className = uspjeh ? 'uspjeh' : 'greska';
+            setTimeout(() => { el.textContent = ''; el.className = ''; }, 4000);
+        }
+    </script>
+</body>
 </html>

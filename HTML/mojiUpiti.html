@@ -8,7 +8,14 @@
   <script src="mojiUpiti.js" defer></script>
 </head>
 <body>
-    <iframe src="meni.html"></iframe>
+   <div id="meni"></div>
+    <script>
+    fetch('/meni.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('meni').innerHTML = html;
+    });
+    </script>
   <main>
     <h1>Moji Upiti</h1>
     <ul id="lista-upita"></ul>

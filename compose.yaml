@@ -1,0 +1,36 @@
+services:
+  mydb:
+    image: mysql:latest
+    container_name: mydb
+    networks:
+      - zadaca-mreza
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wt24
+    ports:
+      - "3307:3306"
+    volumes:
+    - mysql_data:/var/lib/mysql
+
+  nodejs-app:
+    build: .
+    image: ajusugbego1/arm-zadaca:v1.1
+    container_name: nodejs-app
+    ports:
+      - "3000:3000"
+    networks:
+      - zadaca-mreza
+    depends_on:
+      - mydb
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+networks:
+  zadaca-mreza:
+    name: zadaca-mreza
+    driver: bridge
+
+volumes:
+  mysql_data:

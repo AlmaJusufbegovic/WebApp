@@ -13,7 +13,14 @@
 </head>
 
 <body>
-    <iframe src="meni.html"></iframe>
+    <div id="meni"></div>
+    <script>
+    fetch('/meni.html')
+    .then(res => res.text())
+    .then(html => {
+    document.getElementById('meni').innerHTML = html;
+    });
+    </script>
 
     <div id="osnovno">
         <img id="nekretnina-slika" src="/Resources/stan/stan1.jpg" alt="Nekretnina">

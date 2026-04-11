@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bs-BA">
+
+<head>
+<meta charset="UTF-8">
+<title>Registracija</title>
+
+<link rel="stylesheet"
+      href="../Style/prijava.css">
+
+</head>
+
+<body>
+
+<div id="meni"></div>
+
+<script>
+fetch('/meni.html')
+.then(res => res.text())
+.then(html => {
+  document.getElementById('meni').innerHTML = html;
+});
+</script>
+
+<div id="formaDugme">
+
+<label>Ime:</label>
+<input type="text" id="ime"><br>
+
+<label>Prezime:</label>
+<input type="text" id="prezime"><br>
+
+<label>Username:</label>
+<input type="text" id="username"><br>
+
+<label>Password:</label>
+<input type="password" id="password"><br><br>
+
+<button id="dugme">
+Registracija
+</button>
+
+<p>
+Već imate nalog?
+<a href="/prijava.html">
+Prijavite se
+</a>
+</p>
+
+</div>
+
+<div id="areaBelow"></div>
+
+<script src="../Scripts/PoziviAjax.js"></script>
+<script src="../Scripts/registracija.js"></script>
+
+</body>
+
+</html>

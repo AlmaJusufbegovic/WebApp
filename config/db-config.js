@@ -1,5 +1,5 @@
 module.exports={
-    HOST: 'localhost',
+    HOST: 'mydb',
     USER: 'root',
     PASSWORD: 'password',
     DATABASE: 'wt24',
